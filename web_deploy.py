@@ -15,24 +15,20 @@ model = joblib.load(filename)
 # from preprocessing import preprocess
 
 def main():
-    #Setting Application title
-    st.title('Fenyx Titanic Model App')
+    st.title('🚗 GroupTyping AutoScout24 Price Prediction 🚗')
 
-      #Setting Application description
+    # Setting Application description
     st.markdown("""
-     :dart: The sinking of Titanic is one of the most notorious shipwrecks in the history. 
-    In 1912, during her voyage, the Titanic sank after colliding with an iceberg, 
-    killing 1502 out of 2224 passengers and crew.. \n
-     :dart:  This Streamlit app is made to predict Titanic use case.
+     :dart:  This Streamlit app is made to predict Price.
     The application is functional for both online prediction and batch data prediction. \n
     """)
     st.markdown("<h3></h3>", unsafe_allow_html=True)
 
-    #Setting Application sidebar default
+    # Setting Application sidebar default
     image = Image.open('logo2.jpeg')
     add_selectbox = st.sidebar.selectbox(
-    "How would you like to predict?", ("Online", "Batch"))
-    st.sidebar.info('This app is created to predict Titanic use case')
+        "How would you like to predict?", ("Online", "Batch"))
+    st.sidebar.info('This app is created to predict Price')
     st.sidebar.image(image)
     
     
@@ -629,7 +625,7 @@ def main():
     
     if add_selectbox == "Online":
         st.info("Input data below")
-        
+        st.subheader("Please select brand and model:")
         make = st.selectbox('What is the car brand ?:',
                             dataset.make(), index=dataset.make(most=True))
         
