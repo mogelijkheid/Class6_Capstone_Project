@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-df = pd.read_pickle('auto4.pickle')
+df = pd.read_pickle('auto4.pkl')
 
 
 def make(most=False):
