@@ -633,11 +633,11 @@ def main():
         make = st.selectbox('What is the car brand ?:',
                             dataset.make(), index=dataset.make(most=True))
         
-        model = st.selectbox(f'What is the model of {make}', dataset.model(
+        model_ = st.selectbox(f'What is the model of {make}', dataset.model(
             make), index=dataset.model(make, most=True)) 
         
-        make_model= 'make_model_'+make+'-'+model
-        data[make_model] = 1
+        make_model_= 'make_model_'+make+'-'+model_
+        data[make_model_] = 1
          
         age = st.slider('Vehicle Age', min_value=0, max_value=22, value=0)
         data['age'] = age
@@ -706,7 +706,6 @@ def main():
         
         features_df = pd.DataFrame.from_dict([data]) 
         prediction = model.predict(features_df)
-        
         if st.button('Predict'):
     
                 st.success(f"The Prediction Price of the Car is €{int(np.e**prediction[0])}")
