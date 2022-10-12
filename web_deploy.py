@@ -703,8 +703,8 @@ def main():
 
         if wind_deflector:
             data["cc_Wind_deflector"] = 1
-            
-        features_df = pd.DataFrame([data]) 
+        
+        features_df = pd.DataFrame.from_dict([data]) 
         prediction = model.predict(features_df)
         
         if st.button('Predict'):
