@@ -35,6 +35,7 @@ def main():
     
     
     data={
+        'Unnamed: 0' : 0,
         'fuel_type_Diesel': 0, 
         'fuel_type_Electric': 0, 
         'fuel_type_Electric/Diesel': 0, 
@@ -473,8 +474,7 @@ def main():
         'province_Overijssel': 0, 
         'province_South Holland': 0, 
         'province_Utrecht': 0, 
-        'province_Zeeland': 0, 
-        'price': 0, 
+        'province_Zeeland': 0,  
         'mileage': 0, 
         'seats': 0, 
         'doors': 0, 
@@ -490,7 +490,7 @@ def main():
         'co2_emissions': 0,
         'emission_class': 0,
         'paint': 0, 
-        'fuel_con_comb': 0, 
+        '_fuel_con_comb': 0, 
         'ext_All season tyres': 0,
         'ext_Alloy wheels': 0, 
         'ext_Ambient lighting': 0, 
@@ -586,7 +586,7 @@ def main():
         'ent_Sound_system': 0,
         'ent_Television': 0,
         'ent_USB': 0, 
-        'ent_WLAN/_WiFi_hotspot': 0, 
+        'ent_WLAN_/_WiFi_hotspot': 0, 
         'ss_ABS': 0, 
         'ss_Adaptive_Cruise_Control': 0, 
         'ss_Adaptive_headlights': 0, 
@@ -643,14 +643,14 @@ def main():
         data['age'] = age
 
         power = st.slider('Power', min_value=32, max_value=229, value=32)
-        data['power'] = power
+        data['Power'] = power
 
         emission_class = st.slider('Emission Class', min_value=1, max_value=6, value=1) 
         data['emission_class'] = emission_class
 
         title_0 = st.selectbox('Is color :', ('Black','Beige','Blue','Bronze','Brown','Gold','Green','Grey','Orange','Red','Silver','Violet','White','Yellow'))
-        color='color_'+title_0
-        data[color] = 1
+        colour='colour_'+title_0
+        data[colour] = 1
 
         title_0 = st.selectbox('Is body type :', ('Compact','Convertible','Coupe','Off-Road/Pick-up','Other','Sedan','Station wagon','Transporter','Van'))
         body_type='body_type_'+title_0
@@ -668,7 +668,7 @@ def main():
         data[fuel_type] = 1
 
         title_0 = st.selectbox('Is Gear Box :', ('Automatic','Manual','Semi-automatic'))
-        Gear_box='Gear_box_'+title_0
+        Gear_box='Gearbox_'+title_0
         data[Gear_box] = 1
 
         title_0 = st.selectbox('Is province :', ('Drenthe','Flevoland','Friesland','Gelderland','Groningen','Limburg','North Brabant','North Holland','Overijssel','South Holland','Utrecht','Zeeland'))
@@ -703,12 +703,15 @@ def main():
 
         if wind_deflector:
             data["cc_Wind_deflector"] = 1
-        
+            
+        for i in data.keys():
+            if data[i] == 1:
+                print(i)
         features_df = pd.DataFrame.from_dict([data]) 
         prediction = model.predict(features_df)
         if st.button('Predict'):
     
                 st.success(f"The Prediction Price of the Car is €{int(np.e**prediction[0])}")
-                
+        
 if __name__ == '__main__':
     main()
