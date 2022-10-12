@@ -12,9 +12,11 @@ filename = 'finalized_model_.sav'
 model = joblib.load(filename)
 
 #Import python scripts
-# from preprocessing import preprocess
+#from preprocessing import preprocess
+
 
 def main():
+    
     st.title('🚗 GroupTyping AutoScout24 Price Prediction 🚗')
 
     # Setting Application description
@@ -625,7 +627,9 @@ def main():
     
     if add_selectbox == "Online":
         st.info("Input data below")
+        
         st.subheader("Please select brand and model:")
+        
         make = st.selectbox('What is the car brand ?:',
                             dataset.make(), index=dataset.make(most=True))
         
@@ -707,5 +711,5 @@ def main():
     
                 st.success(f"The Prediction Price of the Car is €{int(np.e**prediction[0])}")
                 
-    if __name__ == '__main__':
-        main()
+if __name__ == '__main__':
+    main()
