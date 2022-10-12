@@ -711,7 +711,7 @@ def main():
         prediction = model.predict(features_df)
         if st.button('Predict'):
     
-                st.success(f"The Prediction Price of the Car is €{int(np.e**prediction[0])}")
+                st.success(f"The Prediction Price of the Car is €{int(prediction)}")
         
 if __name__ == '__main__':
     main()
