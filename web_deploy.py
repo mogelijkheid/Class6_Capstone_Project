@@ -15,24 +15,7 @@ model = joblib.load(filename)
 #from preprocessing import preprocess
 
 
-def main():
-    
-    st.title('🚗 GroupTyping AutoScout24 Price Prediction 🚗')
-
-    # Setting Application description
-    st.markdown("""
-     :dart:  This Streamlit app is made to predict Price.
-    The application is functional for both online prediction and batch data prediction. \n
-    """)
-    st.markdown("<h3></h3>", unsafe_allow_html=True)
-
-    # Setting Application sidebar default
-    image = Image.open('logo2.jpeg')
-    add_selectbox = st.sidebar.selectbox(
-        "How would you like to predict?", ("Online", "Batch"))
-    st.sidebar.info('This app is created to predict Price')
-    st.sidebar.image(image)
-    
+def main(): 
     
     data={
         'Unnamed: 0' : 0,
@@ -624,6 +607,21 @@ def main():
         'ss_Traffic_sign_recognition': 0,
         'ss_Xenon_headlights': 0}
  
+    st.title('Fenyx GroupTyping AutoScout Model App')
+
+    # Setting Application description
+    st.markdown("""
+     :dart:  This Streamlit app is made to predict Price.
+    The application is functional for both online prediction and batch data prediction. \n
+    """)
+    st.markdown("<h3></h3>", unsafe_allow_html=True)
+
+    # Setting Application sidebar default
+    image = Image.open('logo2.jpeg')
+    st.sidebar.image('     '+image+'     ')
+    add_selectbox = st.sidebar.selectbox(
+        "How would you like to predict?", ("Online", "Batch"))
+    st.sidebar.info('This app is created to predict Price')
     
     if add_selectbox == "Online":
         st.info("Input data below")
@@ -652,7 +650,7 @@ def main():
         colour='colour_'+title_0
         data[colour] = 1
 
-        title_0 = st.selectbox('Is body type :', ('Compact','Convertible','Coupe','Off-Road/Pick-up','Other','Sedan','Station wagon','Transporter','Van'))
+        title_0 = st.selectbox('Is body type :', ('Other','Convertible','Coupe','Off-Road/Pick-up','Compact','Sedan','Station wagon','Transporter','Van'))
         body_type='body_type_'+title_0
         data[body_type] = 1
 
@@ -699,19 +697,39 @@ def main():
         if air_conditioning:
             data["cc_Air_conditioning"] = 1
 
-        wind_deflector = st.checkbox('Wind Deflector')
+        wind_deflector = st.sidebar.checkbox('Wind Deflector')
 
         if wind_deflector:
             data["cc_Wind_deflector"] = 1
             
-        for i in data.keys():
-            if data[i] == 1:
-                print(i)
+       
+                
         features_df = pd.DataFrame.from_dict([data]) 
         prediction = model.predict(features_df)
         if st.button('Predict'):
     
                 st.success(f"The Prediction Price of the Car is €{int(prediction)}")
+                
+    # elif add_selectbox == "Batch":
+    #     st.subheader("Dataset upload")
+    #     uploaded_file = st.file_uploader("Choose a file")
+    #     if uploaded_file is not None:
+    #         data = pd.read_csv(uploaded_file,encoding= 'utf-8')
+    #         #Get overview of data
+    #         st.write(data.head())
+    #         st.markdown("<h3></h3>", unsafe_allow_html=True)
+    #         #Preprocess inputs
+    #         features_df = preprocess(data, "Batch")
+    #         if st.button('Predict'):
+    #            #Get batch prediction
+    #             prediction = model.predict(features_df)
+    #             prediction_df = pd.DataFrame(prediction, columns=["Predictions"])
+                
+
+    #             st.markdown("<h3></h3>", unsafe_allow_html=True)
+    #             st.subheader('Prediction')
+    #             st.success(f"The Prediction Price of the Car is €{int(prediction)}")
+            
         
 if __name__ == '__main__':
     main()
