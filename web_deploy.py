@@ -618,7 +618,7 @@ def main():
 
     # Setting Application sidebar default
     image = Image.open('logo2.jpeg')
-    st.sidebar.image('     '+image+'     ')
+    st.sidebar.image(image)
     add_selectbox = st.sidebar.selectbox(
         "How would you like to predict?", ("Online", "Batch"))
     st.sidebar.info('This app is created to predict Price')
