@@ -618,7 +618,7 @@ def main():
 
     # Setting Application sidebar default
     image = Image.open('logo2.jpeg')
-    st.sidebar.image(image)
+    st.sidebar.image(image,)
     add_selectbox = st.sidebar.selectbox(
         "How would you like to predict?", ("Online", "Batch"))
     st.sidebar.info('This app is created to predict Price')
@@ -673,8 +673,8 @@ def main():
         province='province_'+title_0
         data[province] = 1
 
-        co2_emissions = st.number_input('Co2 emissions of Car ',min_value= 0,max_value=8,value=5)
-        data['co2_emissions'] = co2_emissions
+        engine_size = st.number_input('Engine Size of Car ',min_value=875,max_value=2885,value=1697)
+        data['engine_size'] = engine_size
 
         clinder = st.number_input('clinder of Car ',min_value= 0,max_value=8,value=4)
         data['cylinders'] = clinder
@@ -682,25 +682,21 @@ def main():
         door = st.number_input('doors of Car ',min_value= 0,max_value=8,value=5)
         data['doors'] = door
 
-        warranty = st.checkbox('Warranty')
+        warranty = st.sidebar.checkbox('Warranty')
 
         if warranty:
             data["warranty"] = 1
 
-        air_suspension = st.checkbox('Air Suspension')
+        air_suspension = st.sidebar.checkbox('Air Suspension')
 
         if air_suspension:
             data["cc_Air_suspension"] = 1
 
-        air_conditioning = st.checkbox('Air Conditioning')
+        air_conditioning = st.sidebar.checkbox('Air Conditioning')
 
         if air_conditioning:
             data["cc_Air_conditioning"] = 1
 
-        wind_deflector = st.sidebar.checkbox('Wind Deflector')
-
-        if wind_deflector:
-            data["cc_Wind_deflector"] = 1
             
        
                 
