@@ -621,69 +621,73 @@ def main():
     st.sidebar.image(image,)
     add_selectbox = st.sidebar.selectbox(
         "How would you like to predict?", ("Online", "Batch"))
-    st.sidebar.info('This app is created to predict Price')
+    
     
     if add_selectbox == "Online":
         st.info("Input data below")
         
         st.subheader("Please select brand and model:")
         
-        make = st.selectbox('What is the car brand ?:',
+        make = st.selectbox('What is the car brand?',
                             dataset.make(), index=dataset.make(most=True))
         
-        model_ = st.selectbox(f'What is the model of {make}', dataset.model(
+        model_ = st.selectbox(f'What is the model of {make}?', dataset.model(
             make), index=dataset.model(make, most=True)) 
         
         make_model_= 'make_model_'+make+'-'+model_
         data[make_model_] = 1
-         
-        age = st.slider('Vehicle Age', min_value=0, max_value=22, value=7)
-        data['age'] = age
-
-        power = st.slider('Power', min_value=32, max_value=229, value=113)
-        data['Power'] = power
         
-        fuel_con_comb = st.slider('Fuel consumption', min_value=0, max_value=11, value=5)
-        data['_fuel_con_comb'] = fuel_con_comb
-
-        emission_class = st.slider('Emission Class', min_value=1, max_value=6, value=5) 
-        data['emission_class'] = emission_class
-
-        title_0 = st.selectbox('Is color :', ('Black','Beige','Blue','Bronze','Brown','Gold','Green','Grey','Orange','Red','Silver','Violet','White','Yellow'))
+        st.subheader("Please select information of Auto:")
+        
+        title_0 = st.selectbox('Clour of Auto :', ('Black','Beige','Blue','Bronze','Brown','Gold','Green','Grey','Orange','Red','Silver','Violet','White','Yellow'))
         colour='colour_'+title_0
         data[colour] = 1
 
-        title_0 = st.selectbox('Is body type :', ('Other','Convertible','Coupe','Off-Road/Pick-up','Compact','Sedan','Station wagon','Transporter','Van'))
+        title_0 = st.selectbox('Body type of Auto :', ('Other','Convertible','Coupe','Off-Road/Pick-up','Compact','Sedan','Station wagon','Transporter','Van'))
         body_type='body_type_'+title_0
         data[body_type] = 1
 
-        title_0 = st.selectbox('Is type :', ('New','Used'))
+        title_0 = st.selectbox('Type of Auto :', ('New','Used'))
         type='type_'+title_0
         data[type] = 1
-
-        mileage = st.number_input('Mileage of Car ',min_value= 1000,max_value=400000,value=105370)
-        data['mileage'] = mileage
-
-        title_0 = st.selectbox('Is Fuel Type :', ('Diesel','Electric','Electric/Diesel','Electric/Gasoline','Gasoline','LPG','Others'))
+        
+        title_0 = st.selectbox('Fuel Type of Auto :', ('Diesel','Electric','Electric/Diesel','Electric/Gasoline','Gasoline','LPG','Others'))
         fuel_type='fuel_type_'+title_0
         data[fuel_type] = 1
-
-        title_0 = st.selectbox('Is Gear Box :', ('Automatic','Manual','Semi-automatic'))
+        
+        title_0 = st.selectbox('Gear Box of Auto :', ('Automatic','Manual','Semi-automatic'))
         Gear_box='Gearbox_'+title_0
         data[Gear_box] = 1
 
-        title_0 = st.selectbox('Is province :', ('Drenthe','Flevoland','Friesland','Gelderland','Groningen','Limburg','North Brabant','North Holland','Overijssel','South Holland','Utrecht','Zeeland'))
+        title_0 = st.selectbox('Province of Auto :', ('Drenthe','Flevoland','Friesland','Gelderland','Groningen','Limburg','North Brabant','North Holland','Overijssel','South Holland','Utrecht','Zeeland'))
         province='province_'+title_0
         data[province] = 1
+        
+        mileage = st.number_input('Mileage of Auto :',min_value= 1000,max_value=400000,value=105370)
+        data['mileage'] = mileage
 
-        engine_size = st.number_input('Engine Size of Car ',min_value=875,max_value=2885,value=1697)
+        engine_size = st.number_input('Engine Size of Auto:',min_value=875,max_value=2885,value=1697)
         data['engine_size'] = engine_size
 
-        clinder = st.number_input('clinder of Car ',min_value= 0,max_value=8,value=4)
+        clinder = st.number_input('Clinder of Auto :',min_value= 0,max_value=8,value=4)
         data['cylinders'] = clinder
 
-        door = st.number_input('doors of Car ',min_value= 0,max_value=8,value=5)
+        door = st.number_input('Doors of Auto :',min_value= 0,max_value=8,value=5)
         data['doors'] = door
+         
+        age = st.slider('Age of Auto :', min_value=0, max_value=22, value=7)
+        data['age'] = age
+
+        power = st.slider('Power of Auto :', min_value=32, max_value=229, value=113)
+        data['Power'] = power
+        
+        fuel_con_comb = st.slider('Fuel consumption of Auto :', min_value=0, max_value=11, value=5)
+        data['_fuel_con_comb'] = fuel_con_comb
+
+        emission_class = st.slider('Emission Class of Auto :', min_value=1, max_value=6, value=5) 
+        data['emission_class'] = emission_class
+        
+        st.sidebar.subheader("Please select extra information of Auto :")
 
         warranty = st.sidebar.checkbox('Warranty')
 
@@ -723,6 +727,7 @@ def main():
     
                 st.success(f"The Prediction Price of the Car is €{int(prediction)}")
                 
+    st.sidebar.info('This app is created to predict Price')            
     # elif add_selectbox == "Batch":
     #     st.subheader("Dataset upload")
     #     uploaded_file = st.file_uploader("Choose a file")
