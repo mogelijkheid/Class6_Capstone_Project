@@ -637,13 +637,16 @@ def main():
         make_model_= 'make_model_'+make+'-'+model_
         data[make_model_] = 1
          
-        age = st.slider('Vehicle Age', min_value=0, max_value=22, value=0)
+        age = st.slider('Vehicle Age', min_value=0, max_value=22, value=7)
         data['age'] = age
 
-        power = st.slider('Power', min_value=32, max_value=229, value=32)
+        power = st.slider('Power', min_value=32, max_value=229, value=113)
         data['Power'] = power
+        
+        fuel_con_comb = st.slider('Fuel consumption', min_value=0, max_value=11, value=5)
+        data['_fuel_con_comb'] = fuel_con_comb
 
-        emission_class = st.slider('Emission Class', min_value=1, max_value=6, value=1) 
+        emission_class = st.slider('Emission Class', min_value=1, max_value=6, value=5) 
         data['emission_class'] = emission_class
 
         title_0 = st.selectbox('Is color :', ('Black','Beige','Blue','Bronze','Brown','Gold','Green','Grey','Orange','Red','Silver','Violet','White','Yellow'))
@@ -696,7 +699,21 @@ def main():
 
         if air_conditioning:
             data["cc_Air_conditioning"] = 1
+            
+        radio = st.sidebar.checkbox('Radio')
 
+        if radio:
+            data["ent_radio"] = 1
+            
+        rain_sensor = st.sidebar.checkbox('Rain Sensor')
+
+        if rain_sensor:
+            data["cc_Rain_sensor"] = 1
+        
+        navigation_system = st.sidebar.checkbox('Navigation System')
+
+        if navigation_system:
+            data["cc_Navigation_system"] = 1
             
        
                 
