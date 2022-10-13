@@ -703,7 +703,7 @@ def main():
         radio = st.sidebar.checkbox('Radio')
 
         if radio:
-            data["ent_radio"] = 1
+            data["ent_Radio"] = 1
             
         rain_sensor = st.sidebar.checkbox('Rain Sensor')
 
