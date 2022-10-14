@@ -671,6 +671,9 @@ def main():
 
         clinder = st.number_input('Clinder of Auto :',min_value= 0,max_value=8,value=4)
         data['cylinders'] = clinder
+        
+        fuel_con_comb = st.number_input('Fuel consumption of Auto :',min_value=0, max_value=11, value=5)
+        data['_fuel_con_comb'] = fuel_con_comb
 
         door = st.number_input('Doors of Auto :',min_value= 0,max_value=8,value=5)
         data['doors'] = door
@@ -680,9 +683,6 @@ def main():
 
         power = st.slider('Power of Auto :', min_value=32, max_value=229, value=113)
         data['Power'] = power
-        
-        fuel_con_comb = st.slider('Fuel consumption of Auto :', min_value=0, max_value=11, value=5)
-        data['_fuel_con_comb'] = fuel_con_comb
 
         emission_class = st.slider('Emission Class of Auto :', min_value=1, max_value=6, value=5) 
         data['emission_class'] = emission_class
