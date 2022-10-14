@@ -612,7 +612,7 @@ def main():
     # Setting Application description
     st.markdown("""
      :dart:  This Streamlit app is made to predict Price.
-    The application is functional for both online prediction and batch data prediction. \n
+    The application is functional for online prediction. \n
     """)
     st.markdown("<h3></h3>", unsafe_allow_html=True)
 
@@ -620,7 +620,7 @@ def main():
     image = Image.open('logo2.jpeg')
     st.sidebar.image(image,)
     add_selectbox = st.sidebar.selectbox(
-        "How would you like to predict?", ("Online", "Batch"))
+        "How would you like to predict?", ("Online"))
     
     
     if add_selectbox == "Online":
@@ -672,7 +672,7 @@ def main():
         clinder = st.number_input('Clinder of Auto :',min_value= 0,max_value=8,value=4)
         data['cylinders'] = clinder
         
-        fuel_con_comb = st.number_input('Fuel consumption of Auto :',min_value=0, max_value=11, value=5)
+        fuel_con_comb = st.number_input('Fuel consumption of Auto :',min_value=0, max_value=11, value=5,format="%.2f")
         data['_fuel_con_comb'] = fuel_con_comb
 
         door = st.number_input('Doors of Auto :',min_value= 0,max_value=8,value=5)
